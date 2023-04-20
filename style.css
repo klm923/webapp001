@@ -132,8 +132,8 @@ div.container_title {
   align-items: center;
   width: 100%;
   border-bottom: #0003 1px solid;
-  padding-bottom: 1rem;
-  /* margin-bottom: 1rem; */
+  /* padding-bottom: 1rem; */
+  margin-bottom: 1rem;
 }
 
 div.container_title h3 {
