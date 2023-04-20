@@ -6,21 +6,21 @@ window.addEventListener('load', (event) => {
     // form.style.height = form.scrollHeight + 'px';
   });
 
-  const resize = function(){
-      let timeoutID = 0;
-      let delay = 500;
-      const form = document.getElementById('myFormCondField');
+//   const resize = function(){
+//       let timeoutID = 0;
+//       let delay = 500;
+//       const form = document.getElementById('myFormCondField');
   
-      window.addEventListener("resize", function(){
-          clearTimeout(timeoutID);
-          timeoutID = setTimeout(function(){
+//       window.addEventListener("resize", function(){
+//           clearTimeout(timeoutID);
+//           timeoutID = setTimeout(function(){
   
-            form.style.height = '0px';
-            form.style.height = form.scrollHeight + 'px';
+//             form.style.height = '0px';
+//             form.style.height = form.scrollHeight + 'px';
   
-          }, delay);
-      }, false);
-  };
+//           }, delay);
+//       }, false);
+//   };
   // resize();
 
 
@@ -49,8 +49,7 @@ window.addEventListener('load', (event) => {
     .then(response => response.json())
     .then(data => {
       document.getElementById('detail_id').value = data.retID;
-      alert(data.retID);
-      alert(data.resWiki);
+      alert(`ID=${data.retID}で登録しました！`);
       btnRegist.disabled = false;
       document.body.style.cursor = 'auto'; // カーソルを元に戻す
     });

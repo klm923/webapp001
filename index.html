@@ -1,208 +1,332 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="style.css">  
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
     <title>Gundam Heroine Database</title>
-</head>
+  </head>
 
-<body>
-  <div id="bg_item"></div>
-  <header class="box_shadow_under">
-    <div class="logo">Gundam Heroine Database</div>
-    <nav>
-      <!-- <ul>
-                <li><a class="menu-button" href="#" >メニュー１</a></li>
-                <li><a class="menu-button" href="#" >メニュー２</a></li>
-                <li><a class="menu-button" href="#" >メニュー３</a></li>
-            </ul> -->
-    </nav>
-    <button class="logout" style="margin-right: 1rem;" onclick="">ログアウト</button>
-  </header>
-  <main>
-    <div class="container">
-      <div class="container_title">
-        <h3 style="cursor: pointer;" onclick="toggleCondField();">
-          検索条件<span id="condition_allow" >▲</span></h3>
-      </div>
-
-      <!-- アコーディオンで折りたたみ -->
-      <form id="myFormCondField" class="active">
-        <div class="control_container">
-          <label for="id">ID</label>
-          <input type="text" class="textbox" id="id" name="id" value="" style="width: 5rem; text-align: center;">
-        </div>
-        <div class="control_container">
-          <label for="family_name">姓</label>
-          <input type="text" class="textbox" id="family_name" name="family_name" value="やまね４５６" style="width: 10rem;">
-        </div>
-        <div class="control_container">
-          <label for="first_name">名</label>
-          <input type="text" class="textbox" id="first_name" name="first_name" value="こういち" style="width: 10rem;">
-        </div>
-        <div class="control_container">
-          <label for="address">住所</label>
-          <input type="text" class="textbox" id="address" name="address" value="東京都港区六本木" style="width: 25rem;">
-        </div>
-        <div class="control_container">
-          <label for="birthday">生年月日</label>
-          <input type="date" class="textbox" id="birthday" name="birthday" value="1970-02-05" >
-        </div>
-        <div class="control_container">
-          <label for="occupation">職業</label>
-          <select class="textbox" name="occupation" id="occupation">
-                        <option value="1">会社員</option>
-                        <option value="2">公務員</option>
-                        <option value="3">フリーター</option>
-                        <option value="4">ながーーーーーーーーーーーーーーーーーーい職業名</option>
-                    </select>
-        </div>
-        <div class="control_container">
-          <label for="birthday"></label>
-          <div class="checkbox_container">
-            <input type="checkbox" name="" class="" id="chktest">
-            <label for="chktest" style="margin: 0;">公開する</label>
-          </div>
-        </div>
-        <div class="control_container full_width" style="width: 100%" ;>
-          <label for="">備考</label>
-          <textarea name="appendix" id="appendix" class="textbox" ></textarea>
-        </div>
-        <div class="" style="display: flex; justify-content: center; width: 100%;">
-          <button id="btnSearch" class="logout" onclick="actRegist(event);">検索<i class="fas fa-search" style="color: #c11022c3;"></i></button>
-          <button id="btnAddNew" class="logout" style="margin-left: 1rem;" onclick="showDlgDetail(event);">新規登録<i class="fas fa-user-plus" style="color: #039140;"></i></button>
-        </div>
-      </form>
-    </div>
-
-    <div class="container">
-      <h3 class="container_title" style="cursor: pointer;">検索結果</h3>
-      <table style="width:100%">
-        <thead>
-          <tr>
-            <th style="width: 3rem;">No.</th>
-            <th class="left" style="width: 8rem;">氏名</th>
-            <th class="left" style="width: 10rem;">住所</th>
-            <th style="width: 6rem;">
-              <div>生年月日</div>
-              <div>年齢</div>
-            </th>
-            <th class="left" style="width: 8rem;">職業</th>
-            <th style="width: 4rem;">公開</th>
-            <th class="left">備考</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="center">1</td>
-            <td>山根　康一</td>
-            <td>東京都港区六本木</td>
-            <td class="center">
-              <div>1970/12/31</div>
-              <div>53歳</div>
-            </td>
-            <td>会社員</td>
-            <td class="center">非公開</td>
-            <td>特にありません</td>
-          </tr>
-          <tr>
-            <td class="center">2</td>
-            <td>山根　康一</td>
-            <td>東京都港区六本木</td>
-            <td class="center">
-              <div>1970/12/31</div>
-              <div>53歳</div>
-            </td>
-            <td>会社員</td>
-            <td class="center">非公開</td>
-            <td>特にありません</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div id="dlgDetail" class="dialogue">
+  <body>
+    <div id="bg_item"></div>
+    <header class="box_shadow_under">
+      <div class="logo">Gundam Heroine Database</div>
+      <nav>
+        <ul>
+                <li><a class="menu-button" href="#" >Ver 04210024</a></li>
+                <!-- <li><a class="menu-button" href="#" >メニュー２</a></li>
+                <li><a class="menu-button" href="#" >メニュー３</a></li> -->
+            </ul>
+      </nav>
+      <button class="logout" style="margin-right: 1rem" onclick="">
+        ログアウト
+      </button>
+    </header>
+    <main>
       <div class="container">
         <div class="container_title">
-          <h3>新規入力</h3>
-          <i class="fas fa-times-circle fa-spin" style="margin-right: 0.5rem; cursor: pointer;" onclick="closeDlgDetail();"></i>
+          <h3 style="cursor: pointer" onclick="toggleCondField();">
+            検索条件<span id="condition_allow">▲</span>
+          </h3>
         </div>
-        <form id="myFormDetail">
+
+        <!-- アコーディオンで折りたたみ -->
+        <form id="myFormCondField" class="active">
           <div class="control_container">
-            <label for="detail_id">ID</label>
-            <input type="text" class="textbox" id="detail_id" name="id" value="" style="width: 5rem; text-align: center;">
+            <label for="id">ID</label>
+            <input
+              type="text"
+              class="textbox"
+              id="id"
+              name="id"
+              value=""
+              style="width: 5rem; text-align: center"
+            />
           </div>
           <div class="control_container">
-            <label for="detail_first_name">ファーストネーム</label>
-            <input type="text" class="textbox" id="detail_first_name" name="first_name" value="マリュー" style="width: 10rem;">
+            <label for="family_name">姓</label>
+            <input
+              type="text"
+              class="textbox"
+              id="family_name"
+              name="family_name"
+              value="やまね４５６"
+              style="width: 10rem"
+            />
           </div>
           <div class="control_container">
-            <label for="detail_family_name">ファミリーネーム</label>
-            <input type="text" class="textbox" id="detail_family_name" name="family_name" value="ラミアス" style="width: 10rem;">
+            <label for="first_name">名</label>
+            <input
+              type="text"
+              class="textbox"
+              id="first_name"
+              name="first_name"
+              value="こういち"
+              style="width: 10rem"
+            />
           </div>
           <div class="control_container">
-            <label for="detail_address">住所</label>
-            <input type="text" class="textbox" id="detail_address" name="address" value="オーブ　ヘリオポリス市" style="width: 25rem;">
+            <label for="address">住所</label>
+            <input
+              type="text"
+              class="textbox"
+              id="address"
+              name="address"
+              value="東京都港区六本木"
+              style="width: 25rem"
+            />
           </div>
           <div class="control_container">
-            <label for="detail_birthday">生年月日</label>
-            <select class="textbox" name="birth_era" id="detail_birth_era">
-                        <option value="" selected disabled>選択してください</option>
-                        <option value="西暦">西暦</option>
-                        <option value="宇宙世紀">宇宙世紀</option>
-                        <option value="コズミックイラ">コズミックイラ</option>
-                    </select>
-            <input type="text" class="textbox center" id="detail_birth_year" name="birth_year" value="55" style="width: 5rem;" maxlength="4"  />
-            <span>/</span>
-            <input type="text" class="textbox center" id="detail_birth_month" name="birth_month" value="12" style="width: 3rem;" maxlength="2"  />
-            <span>/</span>
-            <input type="text" class="textbox center" id="detail_birth_day" name="birth_day" value="24" style="width: 3rem;" maxlength="2"  />
+            <label for="birthday">生年月日</label>
+            <input
+              type="date"
+              class="textbox"
+              id="birthday"
+              name="birthday"
+              value="1970-02-05"
+            />
           </div>
           <div class="control_container">
-            <label for="detail_occupation">担当</label>
-            <select class="textbox" name="occupation" id="detail_occupation">
-                        <option value="" selected disabled>選択してください</option>
-                        <option value="パイロット">パイロット</option>
-                        <option value="オペレーター">オペレーター</option>
-                        <option value="艦長">艦長</option>
-                        <option value="その他">その他</option>
-                    </select>
+            <label for="occupation">職業</label>
+            <select class="textbox" name="occupation" id="occupation">
+              <option value="1">会社員</option>
+              <option value="2">公務員</option>
+              <option value="3">フリーター</option>
+              <option value="4">
+                ながーーーーーーーーーーーーーーーーーーい職業名
+              </option>
+            </select>
           </div>
           <div class="control_container">
-            <label for="detail_main_title">主な登場作品</label>
-            <select class="textbox" name="main_title" id="detail_main_title">
-                        <option value="" selected disabled>選択してください</option>
-                        <option value="機動戦士ガンダム">機動戦士ガンダム</option>
-                        <option value="機動戦士ガンダムSEED">機動戦士ガンダムSEED</option>
-                        <option value="機動戦士ガンダムSEED DESTINY">機動戦士ガンダムSEED DESTINY</option>
-                    </select>
+            <label for="birthday"></label>
+            <div class="checkbox_container">
+              <input type="checkbox" name="" class="" id="chktest" />
+              <label for="chktest" style="margin: 0">公開する</label>
+            </div>
           </div>
           <div class="control_container full_width" style="width: 100%" ;>
             <label for="">備考</label>
-            <textarea name="appendix" id="appendix" class="textbox" ></textarea>
+            <textarea name="appendix" id="appendix" class="textbox"></textarea>
           </div>
-          <div class="" style="display: flex; justify-content: center; width: 100%;">
-            <button id="btnRegist" class="logout" onclick="actRegist(event);">登録<i class="fas fa-database" style="color: #c11022c3;"></i></button>
+          <div
+            class=""
+            style="display: flex; justify-content: center; width: 100%"
+          >
+            <button id="btnSearch" class="logout" onclick="actRegist(event);">
+              検索<i class="fas fa-search" style="color: #c11022c3"></i>
+            </button>
+            <button
+              id="btnAddNew"
+              class="logout"
+              style="margin-left: 1rem"
+              onclick="showDlgDetail(event);"
+            >
+              新規登録<i class="fas fa-user-plus" style="color: #039140"></i>
+            </button>
           </div>
         </form>
       </div>
-    </div>
 
-  </main>
+      <div class="container">
+        <div class="container_title">
+          <h3>検索結果</h3>
+        </div>
+        <table style="width: 100%">
+          <thead>
+            <tr>
+              <th style="width: 3rem">No.</th>
+              <th class="left" style="width: 8rem">氏名</th>
+              <th class="left" style="width: 10rem">住所</th>
+              <th style="width: 6rem">
+                <div>生年月日</div>
+                <div>年齢</div>
+              </th>
+              <th class="left" style="width: 8rem">職業</th>
+              <th style="width: 4rem">公開</th>
+              <th class="left">備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="center">1</td>
+              <td>山根　康一</td>
+              <td>東京都港区六本木</td>
+              <td class="center">
+                <div>1970/12/31</div>
+                <div>53歳</div>
+              </td>
+              <td>会社員</td>
+              <td class="center">非公開</td>
+              <td>特にありません</td>
+            </tr>
+            <tr>
+              <td class="center">2</td>
+              <td>山根　康一</td>
+              <td>東京都港区六本木</td>
+              <td class="center">
+                <div>1970/12/31</div>
+                <div>53歳</div>
+              </td>
+              <td>会社員</td>
+              <td class="center">非公開</td>
+              <td>特にありません</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
+      <div id="dlgDetail" class="dialogue">
+        <div class="container">
+          <div class="container_title">
+            <h3>新規入力</h3>
+            <i
+              class="fas fa-times-circle fa-spin"
+              style="margin-right: 0.5rem; cursor: pointer"
+              onclick="closeDlgDetail();"
+            ></i>
+          </div>
+          <form id="myFormDetail">
+            <div class="control_container">
+              <label for="detail_id">ID</label>
+              <input
+                type="text"
+                class="textbox"
+                id="detail_id"
+                name="id"
+                value=""
+                style="width: 5rem; text-align: center"
+              />
+            </div>
+            <div class="control_container">
+              <label for="detail_first_name">ファーストネーム</label>
+              <input
+                type="text"
+                class="textbox"
+                id="detail_first_name"
+                name="first_name"
+                value="マリュー"
+                style="width: 10rem"
+              />
+            </div>
+            <div class="control_container">
+              <label for="detail_family_name">ファミリーネーム</label>
+              <input
+                type="text"
+                class="textbox"
+                id="detail_family_name"
+                name="family_name"
+                value="ラミアス"
+                style="width: 10rem"
+              />
+            </div>
+            <div class="control_container">
+              <label for="detail_address">住所</label>
+              <input
+                type="text"
+                class="textbox"
+                id="detail_address"
+                name="address"
+                value="オーブ　ヘリオポリス市"
+                style="width: 25rem"
+              />
+            </div>
+            <div class="control_container">
+              <label for="detail_birthday">生年月日</label>
+              <select class="textbox" name="birth_era" id="detail_birth_era">
+                <option value="" selected disabled>選択してください</option>
+                <option value="西暦">西暦</option>
+                <option value="宇宙世紀">宇宙世紀</option>
+                <option value="コズミックイラ">コズミックイラ</option>
+              </select>
+              <input
+                type="text"
+                class="textbox center"
+                id="detail_birth_year"
+                name="birth_year"
+                value="55"
+                style="width: 5rem"
+                maxlength="4"
+              />
+              <span>/</span>
+              <input
+                type="text"
+                class="textbox center"
+                id="detail_birth_month"
+                name="birth_month"
+                value="12"
+                style="width: 3rem"
+                maxlength="2"
+              />
+              <span>/</span>
+              <input
+                type="text"
+                class="textbox center"
+                id="detail_birth_day"
+                name="birth_day"
+                value="24"
+                style="width: 3rem"
+                maxlength="2"
+              />
+            </div>
+            <div class="control_container">
+              <label for="detail_occupation">担当</label>
+              <select class="textbox" name="occupation" id="detail_occupation">
+                <option value="" selected disabled>選択してください</option>
+                <option value="パイロット">パイロット</option>
+                <option value="オペレーター">オペレーター</option>
+                <option value="艦長">艦長</option>
+                <option value="その他">その他</option>
+              </select>
+            </div>
+            <div class="control_container">
+              <label for="detail_main_title">主な登場作品</label>
+              <select class="textbox" name="main_title" id="detail_main_title">
+                <option value="" selected disabled>選択してください</option>
+                <option value="機動戦士ガンダム">機動戦士ガンダム</option>
+                <option value="機動戦士ガンダムSEED">
+                  機動戦士ガンダムSEED
+                </option>
+                <option value="機動戦士ガンダムSEED DESTINY">
+                  機動戦士ガンダムSEED DESTINY
+                </option>
+              </select>
+            </div>
+            <div class="control_container full_width" style="width: 100%" ;>
+              <label for="">備考</label>
+              <textarea
+                name="appendix"
+                id="appendix"
+                class="textbox"
+              ></textarea>
+            </div>
+            <div
+              class=""
+              style="display: flex; justify-content: center; width: 100%"
+            >
+              <button id="btnRegist" class="logout" onclick="actRegist(event);">
+                登録<i class="fas fa-database" style="color: #c11022c3"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.js"
-    integrity="sha512-AsoAG+OFcSvtqlspW166UTUYg7F4GEu0yNhzTIRfOGysIQA8Dqk1WZwyoN4eX6mX4DaSk703Q1iM0M47rw25Kw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.js"
+      integrity="sha512-AsoAG+OFcSvtqlspW166UTUYg7F4GEu0yNhzTIRfOGysIQA8Dqk1WZwyoN4eX6mX4DaSk703Q1iM0M47rw25Kw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
 
-  <script src="script.js"></script>
-
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>
