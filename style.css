@@ -14,7 +14,7 @@
     box-sizing: border-box;
     font-family: 'M PLUS Rounded 1c', 'Zen Maru Gothic', 'Kaisei Decol', sans-serif;
     font-size: var(--font-size);
-    color: #e90f0f;
+    /* color: #e90f0f; */
 }
 
 html {
