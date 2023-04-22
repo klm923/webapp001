@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@500&family=Zen+Maru+Gothic&display=swap');                
 :root {
     --header-height:50px;
-    --font-size:2vh;
+    --font-size:15px;
     --control-height:2.0rem;
     --label-height:0.8rem;
     --transitionDuration:500ms;
@@ -11,9 +11,12 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
+}
+
+html {
     font-family: 'M PLUS Rounded 1c', 'Zen Maru Gothic', 'Kaisei Decol', sans-serif;
     font-size: var(--font-size);
-    box-sizing: border-box;
 }
 
 .box_shadow_under {
