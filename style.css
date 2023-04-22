@@ -219,7 +219,8 @@ textarea.textbox {
 }
 
 button {
-    font-size: 1rem;
+    /* font-size: 1rem; */
+    color: #001;
 }
 
 button.logout {
