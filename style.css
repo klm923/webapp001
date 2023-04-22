@@ -14,6 +14,8 @@
     box-sizing: border-box;
     font-family: 'M PLUS Rounded 1c', 'Zen Maru Gothic', 'Kaisei Decol', sans-serif;
     font-size: var(--font-size);
+    appearance: none;
+    -webkit-appearance: none;
 
 }
 
@@ -225,8 +227,6 @@ textarea.textbox {
 button {
     /* font-size: 1rem; */
     /* color: #009; */
-    appearance: none;
-    -webkit-appearance: none;
 }
 
 button.logout {
