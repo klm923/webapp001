@@ -225,6 +225,7 @@ textarea.textbox {
 button {
     /* font-size: 1rem; */
     /* color: #009; */
+    appearance: none;
     -webkit-appearance: none;
 }
 
