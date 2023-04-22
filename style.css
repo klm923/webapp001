@@ -169,6 +169,10 @@ div.container_title h3 {
     color: #fff;
 }
 
+select {
+    color: #000;
+}
+
 input.textbox, select.textbox {
     height: var(--control-height);
     line-height: 1rem;
