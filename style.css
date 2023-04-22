@@ -94,9 +94,6 @@ body {
   overflow-y: hidden;
 }
 
-body * {
-    color: #000;
-}
 
 #bg_item {
     /* background: #fff; */
@@ -230,7 +227,7 @@ textarea.textbox {
 
 button {
     /* font-size: 1rem; */
-    /* color: #009; */
+    color: #009;
 }
 
 button.logout {
