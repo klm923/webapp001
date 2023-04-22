@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@500&family=Zen+Maru+Gothic&display=swap');                
 :root {
     --header-height:50px;
-    --font-size:15px;
+    --font-size:16px;
     --control-height:2.0rem;
     --label-height:0.8rem;
     --transitionDuration:500ms;
